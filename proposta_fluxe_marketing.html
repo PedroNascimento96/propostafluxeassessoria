@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial · Fluxe</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#F24E00;
+  --orange-glow:rgba(242,78,0,.15);
+  --orange-soft:rgba(242,78,0,.07);
+  --bg:#0B0B0B;
+  --surface:#131313;
+  --surface2:#181818;
+  --border:rgba(255,255,255,.055);
+  --border-o:rgba(242,78,0,.28);
+  --text:#EDEAE4;
+  --muted:#7A7672;
+  --dim:#3E3C3A;
+  --white:#FFFFFF;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+.glow-a{
+  position:fixed;top:-120px;right:-80px;
+  width:640px;height:640px;
+  background:radial-gradient(circle,rgba(242,78,0,.11) 0%,transparent 68%);
+  pointer-events:none;z-index:0;
+}
+.glow-b{
+  position:fixed;bottom:-160px;left:-60px;
+  width:480px;height:480px;
+  background:radial-gradient(circle,rgba(242,78,0,.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 56px 96px;
+  position:relative;overflow:hidden;
+}
+.hero-inner{position:relative;z-index:1;max-width:860px}
+.logo-block{margin-bottom:64px}
+.wordmark{font-size:36px;font-weight:900;letter-spacing:-.04em;color:var(--orange);line-height:1;display:block}
+.tagline{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:5px;display:block}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:22px;opacity:0;animation:fu .65s ease forwards .15s}
+.hero-h1{font-size:clamp(44px,7.5vw,92px);font-weight:900;line-height:.98;letter-spacing:-.04em;color:var(--white);margin-bottom:28px;opacity:0;animation:fu .65s ease forwards .3s}
+.hero-h1 em{color:var(--orange);font-style:normal}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:540px;margin-bottom:52px;opacity:0;animation:fu .65s ease forwards .45s}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:fu .65s ease forwards .6s}
+.chip{display:inline-flex;flex-direction:column;gap:3px;padding:10px 18px;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.chip-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.chip-val{font-size:13px;font-weight:700;color:var(--text)}
+.scroll-cue{position:absolute;bottom:36px;left:56px;display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);z-index:1;opacity:0;animation:fu .65s ease forwards .9s}
+.scroll-cue::before{content:'';display:block;width:1px;height:28px;background:linear-gradient(to bottom,transparent,var(--dim))}
+
+/* ── LAYOUT ── */
+.wrap{max-width:960px;margin:0 auto;padding:88px 56px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+hr.rule{border:none;border-top:1px solid var(--border)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+.eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--orange)}
+.sec-h2{font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.05;letter-spacing:-.03em;color:var(--white);margin-bottom:22px}
+.body-text{font-size:15px;color:var(--muted);line-height:1.82;max-width:720px}
+.body-text p+p{margin-top:14px}
+
+/* ── SCOPE ── */
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+@media(max-width:620px){.scope-grid{grid-template-columns:1fr}}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px;position:relative;overflow:hidden;transition:border-color .3s}
+.scard:hover{border-color:var(--border-o)}
+.scard::after{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--orange);opacity:0;transition:opacity .3s}
+.scard:hover::after{opacity:1}
+.scard-t{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.scard ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.scard li{font-size:13px;color:var(--muted);line-height:1.5;padding-left:14px;position:relative}
+.scard li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:1px;background:var(--orange)}
+
+/* ── PILLARS ── */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:44px}
+.pillar{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+.pillar-ic{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--orange);margin-bottom:10px}
+.pillar-t{font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px}
+.pillar-b{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── INVESTMENT ── */
+.invest-wrap{margin-top:44px;display:flex;flex-direction:column;gap:20px}
+.plans-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.plans-row{grid-template-columns:1fr}}
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.plan.featured{border-color:var(--orange);background:linear-gradient(145deg,#160d06 0%,var(--surface) 55%)}
+.plan.featured::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle,var(--orange-glow),transparent 68%);pointer-events:none}
+.plan-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);background:rgba(242,78,0,.1);border:1px solid rgba(242,78,0,.2);border-radius:20px;padding:3px 10px;margin-bottom:14px;align-self:flex-start}
+.plan-name{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.plan-price{font-size:clamp(34px,5vw,52px);font-weight:900;letter-spacing:-.04em;color:var(--white);line-height:1;margin-bottom:4px}
+.plan-price sup{font-size:18px;font-weight:600;vertical-align:super;color:var(--muted)}
+.plan-price sub{font-size:15px;font-weight:500;color:var(--muted)}
+.plan-period{font-size:13px;color:var(--muted);margin-bottom:6px}
+.plan-total{font-size:12px;font-weight:700;color:var(--orange);margin-bottom:24px;padding:6px 10px;background:rgba(242,78,0,.07);border-radius:6px;display:inline-block;align-self:flex-start}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:0 0 20px}
+.plan-items{list-style:none;display:flex;flex-direction:column;gap:9px;flex:1}
+.plan-items li{font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:9px;line-height:1.5}
+.plan-items li::before{content:'✓';color:var(--orange);font-weight:800;font-size:12px;flex-shrink:0;margin-top:1px}
+.plan-note{font-size:12px;color:var(--dim);margin-top:14px;padding-top:14px;border-top:1px solid var(--border);line-height:1.6}
+.verba-note{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:18px 22px;font-size:13px;color:var(--muted);line-height:1.75}
+.verba-note strong{color:var(--text)}
+.site-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px 28px;display:flex;align-items:flex-start;gap:20px}
+.site-box-icon{width:40px;height:40px;flex-shrink:0;background:rgba(242,78,0,.08);border:1px solid var(--border-o);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.site-box-t{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.site-box-b{font-size:13px;color:var(--muted);line-height:1.7}
+.site-box-price{font-size:20px;font-weight:900;color:var(--orange);margin-top:8px;letter-spacing:-.02em}
+
+/* ── STEPS ── */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:44px}
+.step{display:flex;gap:24px;position:relative}
+.step+.step::before{content:'';position:absolute;top:0;left:19px;width:1px;height:100%;background:var(--border)}
+.step-n{width:40px;height:40px;border-radius:50%;flex-shrink:0;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--orange);position:relative;z-index:1}
+.step-body{padding:8px 0 36px}
+.step-t{font-size:15px;font-weight:700;color:var(--white);margin-bottom:5px}
+.step-d{font-size:13px;color:var(--muted);line-height:1.7}
+.validity{margin-top:44px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.validity-l{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.validity-t{font-size:14px;color:var(--muted);line-height:1.7}
+.validity-t strong{color:var(--white)}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--border);padding:40px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.footer-l-name{font-size:13px;font-weight:700;color:var(--orange);margin-bottom:4px}
+.footer-l-info{font-size:12px;color:var(--muted)}
+.footer-r{font-size:11px;color:var(--dim);text-align:right}
+
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+  .hero,.wrap{padding-left:24px;padding-right:24px}
+  .scroll-cue{left:24px}
+  .footer{padding:32px 24px;flex-direction:column}
+  .footer-r{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<div class="glow-a"></div>
+<div class="glow-b"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="logo-block">
+      <span class="wordmark">FLUXE</span>
+      <span class="tagline">Assessoria de Marketing e Vendas</span>
+    </div>
+    <p class="hero-eyebrow">Proposta Comercial</p>
+    <h1 class="hero-h1">Presença digital<br><em>completa.</em></h1>
+    <p class="hero-sub">Gestão de redes sociais, Google Meu Negócio, tráfego pago e site profissional integrados em uma estrutura única, pensada para crescimento real.</p>
+    <div class="hero-chips">
+      <div class="chip">
+        <span class="chip-label">Modalidade</span>
+        <span class="chip-val">Mensal · 6 meses</span>
+      </div>
+      <div class="chip">
+        <span class="chip-label">Gestão mensal</span>
+        <span class="chip-val">R$ 2.500/mês</span>
+      </div>
+      <div class="chip">
+        <span class="chip-label">Preparado por</span>
+        <span class="chip-val">Fluxe Assessoria</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Role para ver a proposta</div>
+</section>
+
+<hr class="rule">
+
+<!-- 01 CONTEXTO -->
+<div class="wrap reveal" data-reveal>
+  <p class="eyebrow">01 — Contexto</p>
+  <h2 class="sec-h2">O que estamos propondo</h2>
+  <div class="body-text">
+    <p>A partir da conversa que tivemos, estruturamos uma proposta que cobre as principais frentes da sua comunicação digital em um único projeto integrado: presença nas redes sociais, visibilidade nas buscas locais via Google, um site profissional para centralizar a conversão e campanhas de tráfego pago para ampliar o alcance.</p>
+    <p>A lógica do trabalho é simples: antes de anunciar, construímos uma base sólida. Posicionamento definido, conteúdo com direção clara e um destino preparado para converter. Com isso, cada real investido em tráfego pago tem muito mais chance de retornar em resultado concreto.</p>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- 02 ESCOPO -->
+<div class="wrap reveal" data-reveal>
+  <p class="eyebrow">02 — Escopo de Serviços</p>
+  <h2 class="sec-h2">O que está incluído</h2>
+  <div class="body-text">
+    <p>Todos os entregáveis abaixo fazem parte do valor mensal da assessoria.</p>
+  </div>
+  <div class="scope-grid">
+    <div class="scard">
+      <div class="scard-t">Gestão de Redes Sociais</div>
+      <ul>
+        <li>12 posts/mês no feed (Instagram e Facebook)</li>
+        <li>10 stories/mês com foco em engajamento</li>
+        <li>8 Reels/mês estratégicos</li>
+        <li>Legendas com foco em conversão</li>
+        <li>Planejamento editorial mensal</li>
+        <li>Análise de desempenho e ajustes contínuos</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="scard-t">Google Meu Negócio</div>
+      <ul>
+        <li>8 posts/mês otimizados com SEO local</li>
+        <li>Atualização de informações e fotos do perfil</li>
+        <li>Orientação para gestão de avaliações</li>
+        <li>Otimização contínua para buscas locais</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="scard-t">Tráfego Pago</div>
+      <ul>
+        <li>Meta Ads: crescimento de perfil e divulgação de serviços</li>
+        <li>Google Ads: marketing local com foco em buscas</li>
+        <li>Estruturação de públicos, funil e campanhas</li>
+        <li>Testes e otimizações semanais</li>
+        <li>Relatórios periódicos de performance</li>
+      </ul>
+    </div>
+    <div class="scard">
+      <div class="scard-t">Estratégia e Posicionamento</div>
+      <ul>
+        <li>Definição de narrativa central e pilares de conteúdo</li>
+        <li>Direção criativa de todos os conteúdos</li>
+        <li>Alinhamento mensal de rota e performance</li>
+        <li>Comunicação direta e relatórios claros</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- 03 COMO TRABALHAMOS -->
+<div class="wrap reveal" data-reveal>
+  <p class="eyebrow">03 — Como a Fluxe Trabalha</p>
+  <h2 class="sec-h2">Método, não improviso</h2>
+  <div class="body-text">
+    <p>Na Fluxe, nenhum conteúdo é publicado sem objetivo claro. Nenhuma campanha vai ao ar sem estratégia definida. O trabalho começa sempre pelo posicionamento e termina em resultado mensurável.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-ic">↗ 01</div>
+      <div class="pillar-t">Posicionamento antes da execução</div>
+      <div class="pillar-b">Estratégia definida antes de qualquer publicação ou campanha. Nada é feito por intuição.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-ic">↗ 02</div>
+      <div class="pillar-t">Foco em resultado comercial</div>
+      <div class="pillar-b">Cada ação tem propósito claro: gerar contato, visita ou venda. Não trabalhamos por métricas de vaidade.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-ic">↗ 03</div>
+      <div class="pillar-t">Decisões baseadas em dados</div>
+      <div class="pillar-b">Relatórios claros e ajustes de rota sempre que os números indicam oportunidade de melhora.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- 04 INVESTIMENTO -->
+<div class="wrap reveal" data-reveal>
+  <p class="eyebrow">04 — Investimento</p>
+  <h2 class="sec-h2">Condições e valores</h2>
+  <div class="body-text">
+    <p>Dois planos de pagamento para o mesmo escopo completo de 6 meses. Escolha o que melhor se encaixa no seu fluxo de caixa.</p>
+  </div>
+
+  <div class="invest-wrap">
+
+    <div class="plans-row">
+
+      <!-- MENSAL -->
+      <div class="plan">
+        <div class="plan-name">Plano Mensal</div>
+        <div class="plan-price"><sup>R$</sup>2.500<sub>/mês</sub></div>
+        <div class="plan-period">6 meses de assessoria completa</div>
+        <div class="plan-total">Total: R$ 15.000</div>
+        <hr class="plan-divider">
+        <ul class="plan-items">
+          <li>Gestão completa de Instagram e Facebook</li>
+          <li>Google Meu Negócio com SEO local</li>
+          <li>Meta Ads + Google Ads (gestão incluída)</li>
+          <li>Planejamento editorial e estratégia mensal</li>
+          <li>Relatórios de performance</li>
+        </ul>
+        <div class="plan-note">Pagamento mensal via boleto ou transferência, sem juros.</div>
+      </div>
+
+      <!-- INTEGRAL DESTAQUE -->
+      <div class="plan featured">
+        <div class="plan-badge">Melhor condição</div>
+        <div class="plan-name">Plano 6 Meses Integral</div>
+        <div class="plan-price"><sup>R$</sup>12.000</div>
+        <div class="plan-period">Valor total pelos 6 meses</div>
+        <div class="plan-total">Economia de R$ 3.000</div>
+        <hr class="plan-divider">
+        <ul class="plan-items">
+          <li>Tudo do plano mensal incluído</li>
+          <li>6x de R$ 2.000 sem juros no cartão</li>
+          <li>R$ 3.000 a menos que o plano mensal</li>
+          <li>Prioridade no onboarding e atendimento</li>
+        </ul>
+        <div class="plan-note">6 parcelas de R$ 2.000 sem juros no cartão de crédito, sujeito à aprovação da operadora.</div>
+      </div>
+
+    </div>
+
+    <!-- SITE -->
+    <div class="site-box">
+      <div class="site-box-icon">🖥</div>
+      <div>
+        <div class="site-box-t">Site Profissional</div>
+        <div class="site-box-b">Desenvolvimento de site com foco em conversão, velocidade e integração com WhatsApp e redes sociais. Entregue antes do início das campanhas de tráfego pago. Orçado separadamente do pacote mensal.</div>
+        <div class="site-box-price">R$ 2.000</div>
+      </div>
+    </div>
+
+    <!-- VERBA -->
+    <div class="verba-note">
+      <strong>Verba de anúncios não inclusa.</strong> O valor da assessoria cobre exclusivamente estratégia e gestão das campanhas. A verba de anúncios (Meta Ads + Google Ads) é paga diretamente às plataformas. Sugestão inicial: <strong>R$ 600 a R$ 1.200/mês</strong>, planejada e gerida pela Fluxe conforme objetivos e orçamento disponível.
+    </div>
+
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- 05 PRÓXIMOS PASSOS -->
+<div class="wrap reveal" data-reveal>
+  <p class="eyebrow">05 — Como Avançamos</p>
+  <h2 class="sec-h2">Próximos passos</h2>
+  <div class="body-text">
+    <p>Para darmos início ao projeto, seguimos a ordem abaixo.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">01</div>
+      <div class="step-body">
+        <div class="step-t">Aprovação desta proposta</div>
+        <div class="step-d">Escolha do plano de pagamento e confirmação do escopo contratado.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <div class="step-body">
+        <div class="step-t">Assinatura do contrato</div>
+        <div class="step-d">Formalização com prazo, escopo e condições de pagamento definidos.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <div class="step-body">
+        <div class="step-t">Briefing do site</div>
+        <div class="step-d">Reunião para levantar as informações necessárias e fechar o escopo do desenvolvimento. O site precisa estar no ar antes do início das campanhas pagas.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">04</div>
+      <div class="step-body">
+        <div class="step-t">Onboarding e início da produção</div>
+        <div class="step-d">Coleta de acessos, definição de posicionamento, planejamento editorial e início das primeiras ações.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">05</div>
+      <div class="step-body" style="padding-bottom:0">
+        <div class="step-t">Ativação do tráfego pago</div>
+        <div class="step-d">Com o site no ar e o posicionamento definido, as campanhas de Meta Ads e Google Ads são lançadas com estratégia completa e verba acordada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="validity">
+    <div class="validity-l">Validade da proposta</div>
+    <div class="validity-t">Esta proposta tem validade de <strong>7 dias corridos</strong> a partir da data de envio. Qualquer dúvida ou ajuste, estamos à disposição para conversar antes de avançar.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-l-name">Fluxe Assessoria de Marketing e Vendas</div>
+    <div class="footer-l-info">agenciafluxe@gmail.com &nbsp;·&nbsp; @fluxeassessoria</div>
+  </div>
+  <div class="footer-r">Aracaju, Sergipe</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:0.07});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
